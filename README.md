@@ -10,7 +10,7 @@
 如果你还需要清除归档缓存功能: 导入头文件`#import "WZXArchiver.h"`
 
 3. 给Model赋值.例如:
-```objc
+ ```objc
 PersonModel * model = [[PersonModel alloc]init];
     //Object数据
     model.str = @"str";
@@ -41,15 +41,15 @@ PersonModel * model = [[PersonModel alloc]init];
     manModel.age = 23;
     
     model.manModel = manModel;
-```
+ ```
 
 4. 归档，Name为你为这个归档设置的唯一名.
-```objc
+ ```objc
 BOOL isHave = [model wzx_archiveToName:@"person1"];
     NSAssert(isHave = YES, @"归档失败");
-```
+ ```
 
 5. 解归档,Name为你刚才设置的唯一名.
-```objc
+ ```objc
 PersonModel * model2 = [PersonModel wzx_unArchiveToName:@"person1"];
-```
+ ```
