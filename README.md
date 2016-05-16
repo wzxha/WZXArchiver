@@ -5,7 +5,7 @@
 # How to use
 1.任意创建一个`NSObject`类.如：PersonModel.
 
-2.(1)如果你只需要归档和解归档功能：导入头文件`#import "NSObject+WZXArchiver.h"`
+2.(1)如果你只需要归档和解归档功能：导入头文件`#import "NSObject+WZXArchiver.h"`<br>
   (2)如果你还需要清除归档缓存功能: 导入头文件`#import "WZXArchiver.h"`
 
 3.给Model赋值.例如:
