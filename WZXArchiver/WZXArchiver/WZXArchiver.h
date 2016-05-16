@@ -23,7 +23,7 @@
 + (void)clear:(NSString *)className;
 
 /**
- *  清除一个类别和归档对象的名字的特点归档
+ *  清除一个(className = 类别)&&(name = 归档对象的名字)的归档
  *
  *  @param className 类别的名字
  *  @param name      归档对象的名字
