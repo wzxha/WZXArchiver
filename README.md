@@ -3,12 +3,13 @@
 [![License](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/Wzxhaha/WZXArchiver/blob/master/LICENSE)
 
 # How to use
-1.任意创建一个`NSObject`类.如：PersonModel.
+1. 任意创建一个`NSObject`类.如：PersonModel.
 
-2.(1)如果你只需要归档和解归档功能：导入头文件`#import "NSObject+WZXArchiver.h"`<br>
-    (2)如果你还需要清除归档缓存功能: 导入头文件`#import "WZXArchiver.h"`
+2. 
+- 如果你只需要归档和解归档功能：导入头文件`#import "NSObject+WZXArchiver.h"`
+- 如果你还需要清除归档缓存功能: 导入头文件`#import "WZXArchiver.h"`
 
-3.给Model赋值.例如:
+3. 给Model赋值.例如:
 ```objc
 PersonModel * model = [[PersonModel alloc]init];
     //Object数据
@@ -42,13 +43,13 @@ PersonModel * model = [[PersonModel alloc]init];
     model.manModel = manModel;
 ```
 
-4.归档，Name为你为这个归档设置的唯一名.
+4. 归档，Name为你为这个归档设置的唯一名.
 ```objc
 BOOL isHave = [model wzx_archiveToName:@"person1"];
     NSAssert(isHave = YES, @"归档失败");
 ```
 
-5.解归档,Name为你刚才设置的唯一名.
+5. 解归档,Name为你刚才设置的唯一名.
 ```objc
 PersonModel * model2 = [PersonModel wzx_unArchiveToName:@"person1"];
 ```
