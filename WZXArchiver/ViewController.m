@@ -49,7 +49,7 @@
     NSAssert(isHave = YES, @"归档失败");
     
     PersonModel * model2 = [PersonModel wzx_unArchiveToName:@"person1"];
-    model2.manModel = [ManModel wzx_unArchiveToName:WZXArchiver_SonPath(@"Person", @"person1", @"ManModel", @"manModel") isSon:YES];
+    model2.manModel = [ManModel wzx_unArchiveSonEntityToName:WZXArchiver_SonPath(@"Person", @"person1", @"ManModel", @"manModel")];
     NSLog(@"%@",model2);
 }
 

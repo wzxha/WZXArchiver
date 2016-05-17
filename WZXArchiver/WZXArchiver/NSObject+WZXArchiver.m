@@ -54,6 +54,11 @@ static NSString * WZX_Archiver_Name_Key = @"WZX_Archiver_Name_Key";
     return [self wzx_unArchiveToName:name isSon:NO];
 }
 
+
++ (id)wzx_unArchiveSonEntityToName:(NSString *)name {
+    return [self wzx_unArchiveToName:name isSon:YES];
+}
+
 + (id)wzx_unArchiveToName:(NSString *)name isSon:(BOOL)isSon {
     self.WZX_Archiver_Name = name;
     if (isSon == NO) {

@@ -28,7 +28,14 @@
  */
 + (id)wzx_unArchiveToName:(NSString *)name;
 
-+ (id)wzx_unArchiveToName:(NSString *)name isSon:(BOOL)isSon;
+/**
+ *  获取对象中包含的对象的归档
+ *
+ *  @param name  子对象地址,可用WZXArchiver_SonPath宏
+ *
+ *  @return 对象中包含的对象
+ */
++ (id)wzx_unArchiveSonEntityToName:(NSString *)name;
 @end
 
 
