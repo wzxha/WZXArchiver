@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (WZXArchiver)<NSCoding>
+@interface NSObject (WZXArchiver)
 
 /**
  *  通过自定的名字归档

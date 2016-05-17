@@ -78,7 +78,7 @@ static NSString * WZX_Archiver_Name_Key = @"WZX_Archiver_Name_Key";
 + (NSString *)getPath:(NSString *)name{
     NSString * docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString * path = [docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"WZXArchiver/WZX_%@_%@.archiver",NSStringFromClass(self.class),name]];
-    NSLog(@"%@",path);
+    //NSLog(@"%@",path);
     return path;
 }
 
