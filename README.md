@@ -49,7 +49,7 @@ BOOL isHave = [model wzx_archiveToName:@"person1"];
     NSAssert(isHave = YES, @"归档失败");
  ```
 
-5. 解档,Name为你刚才设置的唯一名.
+5. 解档, Name为你刚才设置的唯一名.
  ```objc
 PersonModel * model2 = [PersonModel wzx_unArchiveToName:@"person1"];
 //若你对象中包含另一个对象
