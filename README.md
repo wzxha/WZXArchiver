@@ -35,7 +35,7 @@ PersonModel * model = [[PersonModel alloc]init];
     model.w_uinteger = 6;
     model.w_bool = YES;
     
-    //其他对象(暂未解决--2016.05.16)
+    //其他对象
     ManModel * manModel = [[ManModel alloc]init];
     manModel.name = @"wzx";
     manModel.age = 23;
@@ -52,6 +52,8 @@ BOOL isHave = [model wzx_archiveToName:@"person1"];
 5. 解归档,Name为你刚才设置的唯一名.
  ```objc
 PersonModel * model2 = [PersonModel wzx_unArchiveToName:@"person1"];
+//若你对象中包含另一个对象
+model2.manModel = [ManModel wzx_unArchiveSonEntityToName:WZXArchiver_SonPath(@"Person", @"person1", @"ManModel", @"manModel")];
  ```
 
 # 怎么使用WZXArchiver清除归档的缓存
@@ -76,4 +78,3 @@ PersonModel * model2 = [PersonModel wzx_unArchiveToName:@"person1"];
  */
 + (void)clear:(NSString *)className andName:(NSString *)name;
 ```
-
