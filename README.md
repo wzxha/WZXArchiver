@@ -43,7 +43,7 @@ PersonModel * model = [[PersonModel alloc]init];
     model.manModel = manModel;
  ```
 
-4. 归档，Name为你为这个归档设置的唯一名.
+4. 归档, Name为你为这个归档设置的唯一名.
  ```objc
 BOOL isHave = [model wzx_archiveToName:@"person1"];
     NSAssert(isHave = YES, @"归档失败");
