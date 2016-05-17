@@ -1,8 +1,8 @@
 # WZXArchiver
-自动化归档及解归档<br>
+自动化归档及解档<br>
 [![License](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/Wzxhaha/WZXArchiver/blob/master/LICENSE)
 
-# 怎么使用WZXArchiver归档和解归档
+# 怎么使用WZXArchiver归档和解档
 1. 任意创建一个`NSObject`类.如：PersonModel.
 
 2. 
@@ -49,11 +49,11 @@ BOOL isHave = [model wzx_archiveToName:@"person1"];
     NSAssert(isHave = YES, @"归档失败");
  ```
 
-5. 解归档,Name为你刚才设置的唯一名.
+5. 解档,Name为你刚才设置的唯一名.
  ```objc
 PersonModel * model2 = [PersonModel wzx_unArchiveToName:@"person1"];
 //若你对象中包含另一个对象
-model2.manModel = [ManModel wzx_unArchiveSonEntityToName:WZXArchiver_SonPath(@"Person", @"person1", @"ManModel", @"manModel")];
+model2.manModel = [ManModel wzx_unArchiveSonEntityToName:WZXArchiver_SonPath(@"PersonModel", @"person1", @"ManModel", @"manModel")];
  ```
 
 # 怎么使用WZXArchiver清除归档的缓存
