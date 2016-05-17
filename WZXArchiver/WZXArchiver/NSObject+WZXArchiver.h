@@ -28,4 +28,8 @@
  */
 + (id)wzx_unArchiveToName:(NSString *)name;
 
++ (id)wzx_unArchiveToName:(NSString *)name isSon:(BOOL)isSon;
 @end
+
+
+

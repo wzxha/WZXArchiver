@@ -42,7 +42,9 @@
     NSError * error = nil;
     [fileManager removeItemAtPath:[NSString stringWithFormat:@"WZX_%@_%@.archiver",className,name] error:&error];
     NSAssert(error == nil, @"删除出错");
+    
 }
+
 
 
 + (NSString *)getRootPath {

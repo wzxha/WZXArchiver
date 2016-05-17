@@ -8,26 +8,66 @@
 
 #import "NSObject+WZXArchiver.h"
 #import "NSObject+WZXProperties.h"
+#import <objc/runtime.h>
 
+@interface NSObject ()
+@property(nonatomic, copy)NSString * WZX_Archiver_Name;
+@end
 @implementation NSObject (WZXArchiver)
+static NSString * WZX_Archiver_Name_Key = @"WZX_Archiver_Name_Key";
+- (void)setWZX_Archiver_Name:(NSString *)WZX_Archiver_Name {
+    
+    objc_setAssociatedObject(self, &WZX_Archiver_Name_Key, WZX_Archiver_Name, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+- (NSString *)WZX_Archiver_Name {
+    NSString * str = objc_getAssociatedObject(self, &WZX_Archiver_Name_Key);
+    return str;
+}
 
 - (BOOL)wzx_archiveToName:(NSString *)name {
-    
-    NSString * path = [[self class] getPath:name];
+    return [self wzx_archiveToName:name andIsSon:NO];
+}
 
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        [fileManager createDirectoryAtPath:[[self class] getRootPath] withIntermediateDirectories:YES attributes:nil error:nil];
-    } else {
+- (BOOL)wzx_archiveToName:(NSString *)name andIsSon:(BOOL)isSon {
+    if (isSon == NO) {
+        //不是对象中的子对象
+        self.WZX_Archiver_Name = name;
+        NSString * path = [[self class] getPath:name];
         
+        NSFileManager *fileManager = [[NSFileManager alloc] init];
+        
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            [fileManager createDirectoryAtPath:[NSString stringWithFormat:@"%@/%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],@"WZXArchiver"] withIntermediateDirectories:YES attributes:nil error:nil];
+        } else {
+            //已有文件夹
+        }
+        return [NSKeyedArchiver archiveRootObject:self toFile:path];
+        
+    } else {
+        return [NSKeyedArchiver archiveRootObject:self toFile:[[self class]getSonPath:name]];
     }
-    BOOL flag = [NSKeyedArchiver archiveRootObject:self toFile:path];
-    return flag;
+    
+    
 }
 
 + (id)wzx_unArchiveToName:(NSString *)name {
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[[self class] getPath:name]];
+    return [self wzx_unArchiveToName:name isSon:NO];
+}
+
++ (id)wzx_unArchiveToName:(NSString *)name isSon:(BOOL)isSon {
+    self.WZX_Archiver_Name = name;
+    if (isSon == NO) {
+        return [NSKeyedUnarchiver unarchiveObjectWithFile:[[self class] getPath:name]];
+    } else {
+        return [NSKeyedUnarchiver unarchiveObjectWithFile:[[self class]getSonPath:name]];
+    }
+}
+
++ (NSString *)getSonPath:(NSString *)name {
+    NSString * docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString * path = [docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"WZXArchiver/WZX_%@.archiver",name]];
+    NSLog(@"%@",path);
+    return path;
 }
 
 + (NSString *)getPath:(NSString *)name{
@@ -37,11 +77,8 @@
     return path;
 }
 
-+ (NSString *)getRootPath {
-    NSString * docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString * path = [docPath stringByAppendingPathComponent:@"WZXArchiver"];
-    return path;
-}
+
+#pragma mark -- NSCoding --
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     NSArray * propertyArr = [self wzx_allProperty];
@@ -86,6 +123,15 @@
         
         return @([aDecoder decodeIntegerForKey:name]);
     }
+    
+    if ([type hasPrefix:@"__Model__:"]) {
+//        NSString * className = [type componentsSeparatedByString:@"__Model__:"][1];
+//        ;
+//        NSString * docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//        NSString * path = [docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"WZXArchiver/WZX_%@_%@_%@.archiver",NSStringFromClass(self.class),self.WZX_Archiver_Name,className]];
+//        
+//        [self setValue:[NSClassFromString(className) wzx_unArchiveToName:path isSon:YES]forKey:name];
+    }
     return nil;
 }
 
@@ -112,12 +158,14 @@
         [aCoder encodeInteger:[[self valueForKey:name] integerValue] forKey:name];
     }
     
-#pragma mark -- 对象里面的对象未处理 --
     if ([type hasPrefix:@"__Model__:"]) {
-//        Class modelClass = NSClassFromString([type componentsSeparatedByString:@"__Model__:"][1]);
-//        [[self valueForKey:name] wzx_archiveToName:[NSString stringWithFormat:@""]];
-//        self.
+        
+        NSString * className = [type componentsSeparatedByString:@"__Model__:"][1];
+        NSString * path = [NSString stringWithFormat:@"%@_%@_%@_%@",NSStringFromClass(self.class),self.WZX_Archiver_Name,className,name];
+        
+        [[self valueForKey:name] wzx_archiveToName:path andIsSon:YES];
     }
+
 }
 
 - (BOOL)isObject:(NSString *)type {

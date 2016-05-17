@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "NSObject+WZXArchiver.h"
+
+#define WZXArchiver_SonPath(FATHER_CLASS,FATHER_NAME,SON_CLASS,SON_NAME) \
+        [NSString stringWithFormat:@"%@_%@_%@_%@",FATHER_CLASS,FATHER_NAME,SON_CLASS,SON_NAME]                                         \
+
 @interface WZXArchiver : NSObject
 
 /**
@@ -29,5 +33,6 @@
  *  @param name      归档对象的名字
  */
 + (void)clear:(NSString *)className andName:(NSString *)name;
+
 
 @end
