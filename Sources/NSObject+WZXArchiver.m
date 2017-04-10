@@ -11,17 +11,21 @@
 #import <objc/runtime.h>
 
 @interface NSObject ()
-@property(nonatomic, copy)NSString * WZX_Archiver_Name;
+
+@property(nonatomic, copy)NSString * wzx_archiver_name;
+
 @end
+
 @implementation NSObject (WZXArchiver)
-static NSString * WZX_Archiver_Name_Key = @"WZX_Archiver_Name_Key";
-- (void)setWZX_Archiver_Name:(NSString *)WZX_Archiver_Name {
-    
-    objc_setAssociatedObject(self, &WZX_Archiver_Name_Key, WZX_Archiver_Name, OBJC_ASSOCIATION_COPY_NONATOMIC);
+
+static char *wzx_archiver_name_key = "wzx_archiver_name_key";
+
+- (void)setWzx_archiver_name:(NSString *)wzx_archiver_name {
+    objc_setAssociatedObject(self, &wzx_archiver_name_key, wzx_archiver_name, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-- (NSString *)WZX_Archiver_Name {
-    NSString * str = objc_getAssociatedObject(self, &WZX_Archiver_Name_Key);
-    return str;
+
+- (NSString *)wzx_archiver_name {
+    return objc_getAssociatedObject(self, &wzx_archiver_name_key);
 }
 
 - (BOOL)wzx_archiveToName:(NSString *)name {
@@ -31,20 +35,20 @@ static NSString * WZX_Archiver_Name_Key = @"WZX_Archiver_Name_Key";
 - (BOOL)wzx_archiveToName:(NSString *)name andIsSon:(BOOL)isSon {
     if (isSon == NO) {
         //不是对象中的子对象
-        self.WZX_Archiver_Name = name;
-        NSString * path = [[self class] getPath:name];
+        self.wzx_archiver_name = name;
+        NSString * path = [[self class] pathWithName:name];
         
         NSFileManager *fileManager = [[NSFileManager alloc] init];
         
         if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-            [fileManager createDirectoryAtPath:[NSString stringWithFormat:@"%@/%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],@"WZXArchiver"] withIntermediateDirectories:YES attributes:nil error:nil];
-        } else {
-            //已有文件夹
+            [fileManager createDirectoryAtPath:
+             [NSString stringWithFormat:@"%@/%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject], @"WZXArchiver"] withIntermediateDirectories:YES attributes:nil error:nil];
         }
-        return [NSKeyedArchiver archiveRootObject:self toFile:path];
+        
+        return [NSKeyedArchiver archiveRootObject:self toFile: path];
         
     } else {
-        return [NSKeyedArchiver archiveRootObject:self toFile:[[self class]getSonPath:name]];
+        return [NSKeyedArchiver archiveRootObject:self toFile: [[self class] sonPathWithName:name]];
     }
     
     
@@ -60,25 +64,24 @@ static NSString * WZX_Archiver_Name_Key = @"WZX_Archiver_Name_Key";
 }
 
 + (id)wzx_unArchiveToName:(NSString *)name isSon:(BOOL)isSon {
-    self.WZX_Archiver_Name = name;
+    self.wzx_archiver_name = name;
     if (isSon == NO) {
-        return [NSKeyedUnarchiver unarchiveObjectWithFile:[[self class] getPath:name]];
+        return [NSKeyedUnarchiver unarchiveObjectWithFile:[[self class] pathWithName:name]];
     } else {
-        return [NSKeyedUnarchiver unarchiveObjectWithFile:[[self class]getSonPath:name]];
+        return [NSKeyedUnarchiver unarchiveObjectWithFile:[[self class] sonPathWithName:name]];
     }
 }
 
-+ (NSString *)getSonPath:(NSString *)name {
++ (NSString *)sonPathWithName:(NSString *)name {
     NSString * docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString * path = [docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"WZXArchiver/WZX_%@.archiver",name]];
     NSLog(@"%@",path);
     return path;
 }
 
-+ (NSString *)getPath:(NSString *)name{
++ (NSString *)pathWithName:(NSString *)name{
     NSString * docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString * path = [docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"WZXArchiver/WZX_%@_%@.archiver",NSStringFromClass(self.class),name]];
-    //NSLog(@"%@",path);
     return path;
 }
 
@@ -86,19 +89,19 @@ static NSString * WZX_Archiver_Name_Key = @"WZX_Archiver_Name_Key";
 #pragma mark -- NSCoding --
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    NSArray * propertyArr = [self wzx_allProperty];
-    for (NSDictionary * propertyDic in propertyArr) {
-        [self encodeWithType:propertyDic[@"type"] Name:propertyDic[@"name"] Coder:aCoder];
+    NSArray * propertys = [self wzx_allPropertys];
+    for (NSDictionary * propertyDic in propertys) {
+        [self encodeWithType:propertyDic[@"type"] name:propertyDic[@"name"] coder:aCoder];
     }
 }
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    NSArray * propertyArr = [self wzx_allProperty];
-    for (NSDictionary * propertyDic in propertyArr) {
-        if ([self decodeWithType:propertyDic[@"type"] Name:propertyDic[@"name"] Coder:aDecoder]) {
-            [self setValue:[self decodeWithType:propertyDic[@"type"] Name:propertyDic[@"name"] Coder:aDecoder] forKey:propertyDic[@"name"]];
+    NSArray * propertys = [self wzx_allPropertys];
+    for (NSDictionary * propertyDic in propertys) {
+        if ([self decodeWithType:propertyDic[@"type"] name:propertyDic[@"name"] coder:aDecoder]) {
+            [self setValue:[self decodeWithType:propertyDic[@"type"] name:propertyDic[@"name"] coder:aDecoder] forKey:propertyDic[@"name"]];
         }
     }
     return self;
@@ -106,7 +109,7 @@ static NSString * WZX_Archiver_Name_Key = @"WZX_Archiver_Name_Key";
 #pragma clang diagnostic pop
 
 
-- (id)decodeWithType:(NSString *)type Name:(NSString *)name Coder:(NSCoder *)aDecoder {
+- (id)decodeWithType:(NSString *)type name:(NSString *)name coder:(NSCoder *)aDecoder {
     if ([self isObject:type]) {
         
         return [aDecoder decodeObjectOfClass:NSClassFromString(type) forKey:name];
@@ -137,10 +140,11 @@ static NSString * WZX_Archiver_Name_Key = @"WZX_Archiver_Name_Key";
 //        
 //        [self setValue:[NSClassFromString(className) wzx_unArchiveToName:path isSon:YES]forKey:name];
     }
+    
     return nil;
 }
 
-- (void)encodeWithType:(NSString *)type Name:(NSString *)name Coder:(NSCoder *)aCoder {
+- (void)encodeWithType:(NSString *)type name:(NSString *)name coder:(NSCoder *)aCoder {
     if ([self isObject:type]) {
         
         [aCoder encodeObject:[self valueForKey:name] forKey:name];
@@ -152,7 +156,7 @@ static NSString * WZX_Archiver_Name_Key = @"WZX_Archiver_Name_Key";
         [aCoder encodeFloat:[[self valueForKey:name] floatValue] forKey:name];
     } else if([type isEqualToString:@"double"]){
         
-        [aCoder encodeFloat:[[self valueForKey:name] doubleValue] forKey:name];
+        [aCoder encodeDouble:[[self valueForKey:name] doubleValue] forKey:name];
     } else if([type isEqualToString:@"int"]||
               [type isEqualToString:@"short"]){
         
@@ -166,7 +170,7 @@ static NSString * WZX_Archiver_Name_Key = @"WZX_Archiver_Name_Key";
     if ([type hasPrefix:@"__Model__:"]) {
         
         NSString * className = [type componentsSeparatedByString:@"__Model__:"][1];
-        NSString * path = [NSString stringWithFormat:@"%@_%@_%@_%@",NSStringFromClass(self.class),self.WZX_Archiver_Name,className,name];
+        NSString * path = [NSString stringWithFormat:@"%@_%@_%@_%@",NSStringFromClass(self.class),self.wzx_archiver_name,className,name];
         
         [[self valueForKey:name] wzx_archiveToName:path andIsSon:YES];
     }

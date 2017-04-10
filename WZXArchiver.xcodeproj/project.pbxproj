@@ -10,14 +10,13 @@
 		1E234B981E9B7D6B00EF78F8 /* WZXArchiver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E234B8E1E9B7D6B00EF78F8 /* WZXArchiver.framework */; };
 		1E234B9D1E9B7D6B00EF78F8 /* WZXArchiverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E234B9C1E9B7D6B00EF78F8 /* WZXArchiverTests.m */; };
 		1E234B9F1E9B7D6B00EF78F8 /* WZXArchiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E234B911E9B7D6B00EF78F8 /* WZXArchiver.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1E234BAF1E9B7E7000EF78F8 /* NSObject+WZXArchiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E234BA91E9B7E7000EF78F8 /* NSObject+WZXArchiver.h */; };
+		1E234BAF1E9B7E7000EF78F8 /* NSObject+WZXArchiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E234BA91E9B7E7000EF78F8 /* NSObject+WZXArchiver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E234BB01E9B7E7000EF78F8 /* NSObject+WZXArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E234BAA1E9B7E7000EF78F8 /* NSObject+WZXArchiver.m */; };
-		1E234BB11E9B7E7000EF78F8 /* NSObject+WZXProperties.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E234BAB1E9B7E7000EF78F8 /* NSObject+WZXProperties.h */; };
+		1E234BB11E9B7E7000EF78F8 /* NSObject+WZXProperties.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E234BAB1E9B7E7000EF78F8 /* NSObject+WZXProperties.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1E234BB21E9B7E7000EF78F8 /* NSObject+WZXProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E234BAC1E9B7E7000EF78F8 /* NSObject+WZXProperties.m */; };
-		1E234BB31E9B7E7000EF78F8 /* WZXArchiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E234BAD1E9B7E7000EF78F8 /* WZXArchiver.h */; };
-		1E234BB41E9B7E7000EF78F8 /* WZXArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E234BAE1E9B7E7000EF78F8 /* WZXArchiver.m */; };
-		1E234BB91E9B7E8B00EF78F8 /* ManModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E234BB61E9B7E8B00EF78F8 /* ManModel.m */; };
-		1E234BBA1E9B7E8B00EF78F8 /* PersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E234BB81E9B7E8B00EF78F8 /* PersonModel.m */; };
+		1E234BB31E9B7E7000EF78F8 /* WZXArchiverManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E234BAD1E9B7E7000EF78F8 /* WZXArchiverManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1E234BB41E9B7E7000EF78F8 /* WZXArchiverManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E234BAE1E9B7E7000EF78F8 /* WZXArchiverManager.m */; };
+		1E234BB91E9B7E8B00EF78F8 /* Foo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E234BB61E9B7E8B00EF78F8 /* Foo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,12 +40,10 @@
 		1E234BAA1E9B7E7000EF78F8 /* NSObject+WZXArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WZXArchiver.m"; sourceTree = "<group>"; };
 		1E234BAB1E9B7E7000EF78F8 /* NSObject+WZXProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WZXProperties.h"; sourceTree = "<group>"; };
 		1E234BAC1E9B7E7000EF78F8 /* NSObject+WZXProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WZXProperties.m"; sourceTree = "<group>"; };
-		1E234BAD1E9B7E7000EF78F8 /* WZXArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZXArchiver.h; sourceTree = "<group>"; };
-		1E234BAE1E9B7E7000EF78F8 /* WZXArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZXArchiver.m; sourceTree = "<group>"; };
-		1E234BB51E9B7E8B00EF78F8 /* ManModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManModel.h; sourceTree = "<group>"; };
-		1E234BB61E9B7E8B00EF78F8 /* ManModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManModel.m; sourceTree = "<group>"; };
-		1E234BB71E9B7E8B00EF78F8 /* PersonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonModel.h; sourceTree = "<group>"; };
-		1E234BB81E9B7E8B00EF78F8 /* PersonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonModel.m; sourceTree = "<group>"; };
+		1E234BAD1E9B7E7000EF78F8 /* WZXArchiverManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZXArchiverManager.h; sourceTree = "<group>"; };
+		1E234BAE1E9B7E7000EF78F8 /* WZXArchiverManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZXArchiverManager.m; sourceTree = "<group>"; };
+		1E234BB51E9B7E8B00EF78F8 /* Foo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
+		1E234BB61E9B7E8B00EF78F8 /* Foo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +96,8 @@
 		1E234B9B1E9B7D6B00EF78F8 /* WZXArchiverTests */ = {
 			isa = PBXGroup;
 			children = (
-				1E234BB51E9B7E8B00EF78F8 /* ManModel.h */,
-				1E234BB61E9B7E8B00EF78F8 /* ManModel.m */,
-				1E234BB71E9B7E8B00EF78F8 /* PersonModel.h */,
-				1E234BB81E9B7E8B00EF78F8 /* PersonModel.m */,
+				1E234BB51E9B7E8B00EF78F8 /* Foo.h */,
+				1E234BB61E9B7E8B00EF78F8 /* Foo.m */,
 				1E234B9C1E9B7D6B00EF78F8 /* WZXArchiverTests.m */,
 				1E234B9E1E9B7D6B00EF78F8 /* Info.plist */,
 			);
@@ -116,8 +111,8 @@
 				1E234BAA1E9B7E7000EF78F8 /* NSObject+WZXArchiver.m */,
 				1E234BAB1E9B7E7000EF78F8 /* NSObject+WZXProperties.h */,
 				1E234BAC1E9B7E7000EF78F8 /* NSObject+WZXProperties.m */,
-				1E234BAD1E9B7E7000EF78F8 /* WZXArchiver.h */,
-				1E234BAE1E9B7E7000EF78F8 /* WZXArchiver.m */,
+				1E234BAD1E9B7E7000EF78F8 /* WZXArchiverManager.h */,
+				1E234BAE1E9B7E7000EF78F8 /* WZXArchiverManager.m */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -129,10 +124,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E234BB31E9B7E7000EF78F8 /* WZXArchiver.h in Headers */,
-				1E234BB11E9B7E7000EF78F8 /* NSObject+WZXProperties.h in Headers */,
+				1E234BB31E9B7E7000EF78F8 /* WZXArchiverManager.h in Headers */,
 				1E234BAF1E9B7E7000EF78F8 /* NSObject+WZXArchiver.h in Headers */,
 				1E234B9F1E9B7D6B00EF78F8 /* WZXArchiver.h in Headers */,
+				1E234BB11E9B7E7000EF78F8 /* NSObject+WZXProperties.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E234BB21E9B7E7000EF78F8 /* NSObject+WZXProperties.m in Sources */,
-				1E234BB41E9B7E7000EF78F8 /* WZXArchiver.m in Sources */,
+				1E234BB41E9B7E7000EF78F8 /* WZXArchiverManager.m in Sources */,
 				1E234BB01E9B7E7000EF78F8 /* NSObject+WZXArchiver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,8 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E234BBA1E9B7E8B00EF78F8 /* PersonModel.m in Sources */,
-				1E234BB91E9B7E8B00EF78F8 /* ManModel.m in Sources */,
+				1E234BB91E9B7E8B00EF78F8 /* Foo.m in Sources */,
 				1E234B9D1E9B7D6B00EF78F8 /* WZXArchiverTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,7 +12,7 @@
 #define WZXArchiver_SonPath(FATHER_CLASS,FATHER_NAME,SON_CLASS,SON_NAME) \
         [NSString stringWithFormat:@"%@_%@_%@_%@",FATHER_CLASS,FATHER_NAME,SON_CLASS,SON_NAME]                                         \
 
-@interface WZXArchiver : NSObject
+@interface WZXArchiverManager : NSObject
 
 /**
  *  清除所有归档

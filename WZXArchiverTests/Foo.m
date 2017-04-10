@@ -1,13 +1,17 @@
 //
-//  PersonModel.m
+//  ManModel.m
 //  WZXArchiver
 //
 //  Created by WzxJiang on 16/5/16.
 //  Copyright © 2016年 WzxJiang. All rights reserved.
 //
 
-#import "PersonModel.h"
+#import "Foo.h"
 
-@implementation PersonModel
+@implementation Foo
+
+@end
+
+@implementation Bar
 
 @end
