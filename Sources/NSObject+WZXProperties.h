@@ -10,23 +10,11 @@
 
 @interface NSObject (WZXProperties)
 
-typedef NS_ENUM(NSInteger, WZXPropertyType) {
-    WZXPropertyTypeNSClass,
-    WZXPropertyTypeInteger,
-    WZXPropertyTypeUInteger,
-    WZXPropertyTypeDouble,
-    WZXPropertyTypeBool,
-    WZXPropertyTypeInt,
-    WZXPropertyTypeFloat,
-    WZXPropertyTypeShort,
-    WZXPropertyTypeNull
-};
-
 /**
- *  获取一个类所有的成员变量及类型
+ *  获取一个类所有的成员变量名
  *
- *  @return @[@{@"name":@"xxx", @"type":@"xxxx"}...]
+ *  @return @[...]
  */
-- (NSArray *)wzx_allPropertys;
+- (NSArray <NSString *> *)wzx_allPropertyNames;
 
 @end

@@ -66,7 +66,7 @@
     bar.name = @"wzx";
     bar.age = 23;
     
-//    bar.manModel = manModel;
+    foo.bar = bar;
     
     BOOL isHave = [foo wzx_archiveToName:@"foo"];
     NSAssert(isHave = YES, @"归档失败");
@@ -98,6 +98,9 @@
     XCTAssertTrue(foo2.w_integer == 5);
     XCTAssertTrue(foo2.w_uinteger == 6);
     XCTAssertTrue(foo2.w_bool == YES);
+
+    XCTAssertTrue([foo2.bar.name isEqualToString: foo.bar.name]);
+    XCTAssertTrue(foo2.bar.age == foo.bar.age);
 
 }
 

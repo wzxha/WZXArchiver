@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class Bar;
+
 @interface Foo: NSObject
 
 @property (nonatomic, copy) NSString *str;
@@ -29,7 +31,7 @@
 @property (nonatomic, assign) double w_doule;
 @property (nonatomic, assign) float w_float;
 
-//@property(nonatomic,strong)ManModel * manModel;
+@property (nonatomic, strong) Bar *bar;
 
 @end
 
