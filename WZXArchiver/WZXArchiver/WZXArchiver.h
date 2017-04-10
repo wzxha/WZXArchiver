@@ -2,37 +2,18 @@
 //  WZXArchiver.h
 //  WZXArchiver
 //
-//  Created by WzxJiang on 16/5/16.
-//  Copyright © 2016年 WzxJiang. All rights reserved.
+//  Created by wzxjiang on 2017/4/10.
+//  Copyright © 2017年 Null. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "NSObject+WZXArchiver.h"
+#import <UIKit/UIKit.h>
 
-#define WZXArchiver_SonPath(FATHER_CLASS,FATHER_NAME,SON_CLASS,SON_NAME) \
-        [NSString stringWithFormat:@"%@_%@_%@_%@",FATHER_CLASS,FATHER_NAME,SON_CLASS,SON_NAME]                                         \
+//! Project version number for WZXArchiver.
+FOUNDATION_EXPORT double WZXArchiverVersionNumber;
 
-@interface WZXArchiver : NSObject
+//! Project version string for WZXArchiver.
+FOUNDATION_EXPORT const unsigned char WZXArchiverVersionString[];
 
-/**
- *  清除所有归档
- */
-+ (void)clearAll;
-
-/**
- *  清除一个类别的归档
- *
- *  @param className 类别的名字
- */
-+ (void)clear:(NSString *)className;
-
-/**
- *  清除一个(className = 类别)&&(name = 归档对象的名字)的归档
- *
- *  @param className 类别的名字
- *  @param name      归档对象的名字
- */
-+ (void)clear:(NSString *)className andName:(NSString *)name;
+// In this header, you should import all the public headers of your framework using statements like #import <WZXArchiver/PublicHeader.h>
 
 
-@end

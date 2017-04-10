@@ -2,8 +2,8 @@
 //  WZXArchiverTests.m
 //  WZXArchiverTests
 //
-//  Created by WzxJiang on 16/5/16.
-//  Copyright © 2016年 WzxJiang. All rights reserved.
+//  Created by wzxjiang on 2017/4/10.
+//  Copyright © 2017年 Null. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
