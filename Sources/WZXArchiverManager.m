@@ -11,13 +11,13 @@
 @implementation WZXArchiverManager
 
 + (void)clearAll {
-    NSString * docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     
     NSFileManager *fileManager = [NSFileManager new];
                                   
-    [fileManager changeCurrentDirectoryPath:docPath];
+    [fileManager changeCurrentDirectoryPath:documentPath];
                                   
-    NSError * error = nil;
+    NSError *error = nil;
                                   
     [fileManager removeItemAtPath:@"WZXArchiver" error:&error];
                                   
@@ -27,18 +27,18 @@
 + (void)clear:(NSString *)className {
     NSFileManager *fileManager = [NSFileManager new];
     
-    [fileManager changeCurrentDirectoryPath:[[self class] rootPath]];
+    [fileManager changeCurrentDirectoryPath: [[self class] archiverPath]];
     
-    NSError * error = nil;
+    NSError *error = nil;
     
-    NSArray * fileLists = [fileManager contentsOfDirectoryAtPath:fileManager.currentDirectoryPath error:&error];
+    NSArray *fileLists = [fileManager contentsOfDirectoryAtPath:fileManager.currentDirectoryPath error:&error];
     
     NSAssert(error == nil, @"查询出错");
     
-    for (NSString * fileName in fileLists) {
-        if ([fileName hasPrefix:[NSString stringWithFormat:@"WZX_%@", className]]) {
-            NSError * removeError = nil;
-            [fileManager removeItemAtPath:fileName error:&removeError];
+    for (NSString *fileName in fileLists) {
+        if ([fileName hasPrefix: className]) {
+            NSError *removeError = nil;
+            [fileManager removeItemAtPath: fileName error: &removeError];
             NSAssert(removeError == nil, @"删除出错");
         }
     }
@@ -47,22 +47,20 @@
 + (void)clear:(NSString *)className andName:(NSString *)name {
     NSFileManager *fileManager = [NSFileManager new];
     
-    [fileManager changeCurrentDirectoryPath:[[self class] rootPath]];
+    [fileManager changeCurrentDirectoryPath:[[self class] archiverPath]];
     
-    NSError * error = nil;
+    NSError *error = nil;
     
-    [fileManager removeItemAtPath:[NSString stringWithFormat:@"WZX_%@_%@.archiver", className, name] error:&error];
+    [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@_%@.archiver", className, name] error: &error];
     
     NSAssert(error == nil, @"删除出错");
 }
 
 
 
-+ (NSString *)rootPath {
-    NSString * docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    
-    NSString * path = [docPath stringByAppendingPathComponent:@"WZXArchiver"];
-    
-    return path;
++ (NSString *)archiverPath {
+    return
+    [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"WZXArchiver"];
 }
+
 @end

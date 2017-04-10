@@ -32,8 +32,8 @@
 }
 
 + (NSString *)_pathWithName:(NSString *)name{
-    NSString * docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString * path = [docPath stringByAppendingPathComponent: [NSString stringWithFormat:@"WZXArchiver/%@_%@.archiver", NSStringFromClass(self.class), name]];
+    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *path = [docPath stringByAppendingPathComponent: [NSString stringWithFormat:@"WZXArchiver/%@_%@.archiver", NSStringFromClass(self.class), name]];
     return path;
 }
 
@@ -41,8 +41,8 @@
 #pragma mark -- NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    NSArray * propertyNames = [self wzx_allPropertyNames];
-    for (NSString * propertyName in propertyNames) {
+    NSArray *propertyNames = [self wzx_allPropertyNames];
+    for (NSString *propertyName in propertyNames) {
         [aCoder encodeObject: [self valueForKey:propertyName] forKey: propertyName];
     }
 }
@@ -51,8 +51,8 @@
 #pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    NSArray * propertyNames = [self wzx_allPropertyNames];
-    for (NSString * propertyName in propertyNames) {
+    NSArray *propertyNames = [self wzx_allPropertyNames];
+    for (NSString *propertyName in propertyNames) {
         [self setValue: [aDecoder decodeObjectForKey:propertyName] forKey: propertyName];
     }
     return self;
