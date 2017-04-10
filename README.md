@@ -1,28 +1,24 @@
 # WZXArchiver
-更加方便的归解档<br>
-[![License](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/Wzxhaha/WZXArchiver/blob/master/LICENSE)
+[![License](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/Wzxhaha/WZXArchiver/blob/master/LICENSE)<br>
+更加方便的归解档
 
 ## Usage
-1. 任意创建一个`NSObject`类.如：Foo.
+`@import WZXArchiver;`
 
-2. 
-- 归档和解归档：导入头文件`#import "NSObject+WZXArchiver.h"`
-- 清除归档: 导入头文件`#import "WZXArchiverManager.h"`
-
-## 归档
+#### 归档
  ```objc
 //  name为这个归档唯一标识符.
 BOOL isHave = [foo wzx_archiveToName:@"foo"];
-    NSAssert(isHave = YES, @"归档失败");
+NSAssert(isHave = YES, @"归档失败");
  ```
 
-## 解档
+#### 解档
 
  ```objc
 Foo *foo = [Foo wzx_unArchiveToName:@"foo"];
  ```
 
-## 清除
+#### 清除
 ```objc
 /**
  *  清除所有归档
