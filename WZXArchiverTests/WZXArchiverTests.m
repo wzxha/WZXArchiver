@@ -1,29 +1,39 @@
 //
-//  ViewController.m
-//  WZXArchiver
+//  WZXArchiverTests.m
+//  WZXArchiverTests
 //
-//  Created by WzxJiang on 16/5/16.
-//  Copyright © 2016年 WzxJiang. All rights reserved.
+//  Created by wzxjiang on 2017/4/10.
+//  Copyright © 2017年 Null. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "WZXArchiver.h"
+#import <XCTest/XCTest.h>
+#import "ManModel.h"
 #import "PersonModel.h"
-@interface ViewController ()
+
+@interface WZXArchiverTests : XCTestCase
 
 @end
 
-@implementation ViewController
+@implementation WZXArchiverTests
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)setUp {
+    [super setUp];
+    // Put setup code here. This method is called before the invocation of each test method in the class.
+}
+
+- (void)tearDown {
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [super tearDown];
+}
+
+- (void)testExample {
     PersonModel * model = [[PersonModel alloc]init];
     model.str = @"str";
     model.muStr = [NSMutableString stringWithString:@"muStr"];
     model.dic = @{@"key":@"value"};
     model.muDic = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                   @"key":@"muValue"
-                                                                }];
+                                                                  }];
     model.arr = @[@"arr1",@"arr2"];
     model.muArr = [NSMutableArray arrayWithArray:@[@"muarr1",@"muarr2"]];
     model.data = [model.str dataUsingEncoding:NSUTF8StringEncoding];
@@ -53,10 +63,11 @@
     NSLog(@"%@",model2);
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)testPerformanceExample {
+    // This is an example of a performance test case.
+    [self measureBlock:^{
+        // Put the code you want to measure the time of here.
+    }];
 }
 
 @end
